@@ -7,35 +7,30 @@ import federation from '@originjs/vite-plugin-federation';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/host-app',
+  cacheDir: '../../node_modules/.vite/apps/remote-first-fe',
   server: {
-    port: 4200,
+    port: 5001,
     host: 'localhost',
   },
   preview: {
-    port: 4300,
+    port: 5001,
     host: 'localhost',
   },
-  plugins: [
-    react(),
-    nxViteTsPaths(),
-    nxCopyAssetsPlugin(['*.md']),
-    federation({
-      name: 'host-app',
-      filename: 'remoteEntry.js',
-      remotes: {
-        'remote-first-fe': 'http://localhost:5001/assets/remoteEntry.js',
-        'remote-second-fe': 'http://localhost:5002/assets/remoteEntry.js',
-      },
-      shared: ['react', 'react-dom', '@mui/material'],
-    }),
-  ],
+  plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md']),
+  federation({
+    name: 'remote-second-fe',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './Module': './src/app/app.tsx',
+    },
+    shared: ['react', 'react-dom', '@mui/material'],
+  })],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
   // },
   build: {
-    outDir: '../../dist/apps/host-app',
+    outDir: '../../dist/apps/remote-first-fe',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
@@ -53,7 +48,7 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: '../../coverage/apps/host-app',
+      reportsDirectory: '../../coverage/apps/remote-first-fe',
       provider: 'v8',
     },
   },

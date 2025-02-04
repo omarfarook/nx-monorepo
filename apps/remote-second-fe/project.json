@@ -1,0 +1,9 @@
+{
+  "name": "remote-second-fe",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/remote-second-fe/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project remote-second-fe --web",
+  "targets": {}
+}

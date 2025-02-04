@@ -1,0 +1,9 @@
+{
+  "name": "remote-first-fe",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/remote-first-fe/src",
+  "projectType": "application",
+  "tags": ["application: remote-first-fe"],
+  "// targets": "to see all targets run: nx show project remote-first-fe --web",
+  "targets": {}
+}
